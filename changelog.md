@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.13
+
+* Shorten default timeouts.
+
 ## 7.0.12
 
 * Update to use the new templates for `ServerSlave` with custom data types.

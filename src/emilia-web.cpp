@@ -52,10 +52,6 @@ int main(int argc, const char *argv[]) {
 	typedef Rain::Networking::Http::Server<void *> Server;
 	Server server(512);
 
-	// Set server parameters.
-	server.acceptTimeoutMs = 30000;
-	server.recvTimeoutMs = 30000;
-
 	// Request handler.
 	server.onRequest = [&](Server::Request *req) {
 		static std::mutex coutMtx;
