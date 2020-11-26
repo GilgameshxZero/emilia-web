@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.12
+
+* Update to use the new templates for `ServerSlave` with custom data types.
+
 ## 7.0.11
 
 * Fix a bug where the file cache was wiped on every new request. This should improve performance for smaller files and minimize disk reads.

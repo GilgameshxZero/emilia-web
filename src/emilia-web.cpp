@@ -49,14 +49,15 @@ int main(int argc, const char *argv[]) {
 	newsSubsIn.close();
 
 	// Server with max 512 threads.
-	Rain::Networking::Http::Server server(512);
+	typedef Rain::Networking::Http::Server<void *> Server;
+	Server server(512);
 
 	// Set server parameters.
 	server.acceptTimeoutMs = 30000;
 	server.recvTimeoutMs = 30000;
 
 	// Request handler.
-	server.onRequest = [&](Rain::Networking::Http::Server::Request *req) {
+	server.onRequest = [&](Server::Request *req) {
 		static std::mutex coutMtx;
 		{
 			std::lock_guard<std::mutex> coutLck(coutMtx);
@@ -69,7 +70,7 @@ int main(int argc, const char *argv[]) {
 		static const std::size_t MAX_FILE_CACHE_SIZE = 1 << 22;
 
 		// 404 response.
-		Rain::Networking::Http::Server::Response notFound(
+		Server::Response notFound(
 			req->slave, 404, "Emilia couldn't find your page T_T");
 		notFound.body.appendBytes("I'm sorry, I couldn't find what you wanted T_T");
 		notFound.header["Content-Type"] = "text/html";
@@ -79,7 +80,7 @@ int main(int argc, const char *argv[]) {
 			return;
 		}
 
-		Rain::Networking::Http::Server::Response res(req->slave);
+		Server::Response res(req->slave);
 		res.header["Server"] = "emilia-web";
 
 		// Use custom endpoint handlers before defaulting to fileserver.
@@ -192,6 +193,7 @@ int main(int argc, const char *argv[]) {
 
 	// Start server until exit called.
 	server.serve(Rain::Networking::Host(NULL, port), false);
+	std::cout << "Serving on port " << server.getService().getCStr() << ".\n";
 	std::string command;
 	while (command != "exit") {
 		std::cin >> command;
