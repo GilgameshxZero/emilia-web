@@ -24,7 +24,7 @@ EMILIA_WEB_BIN := $(BIN_DIR)$(BIN_NAME)
 
 # Flags for build. Release by default.
 CXX := g++
-CXXFLAG := -I$(INCLUDE_DIR) -I$(RAIN_INCLUDE_DIR) -std=c++17 -lstdc++fs -g -Wall -pthread
+CXXFLAG := -I$(INCLUDE_DIR) -I$(RAIN_INCLUDE_DIR) -std=c++17 -lstdc++fs -lresolv -g -Wall -pthread
 CXXFLAG_DEBUG := -O0
 CXXFLAG_RELEASE := -O3 -march=native
 
@@ -40,10 +40,18 @@ endif
 
 # Mark .PHONY for rules to avoid compiling files named the same as rules.
 
-# Compile and run all tests.
+# Compile without running.
 .PHONY: $(BIN_NAME)
 $(BIN_NAME): $(VERSION_BUILD_INCLUDE) $(EMILIA_WEB_BIN)
-	./$(EMILIA_WEB_BIN)
+
+# Compile and run.
+.PHONY: run
+run: $(VERSION_BUILD_INCLUDE) $(EMILIA_WEB_BIN)
+	./$(EMILIA_MAIL_BIN) $(ARGS)
+
+# Compile with incrementing build nor running.
+.PHONY: no-inc
+noinc: $(VERSION_BUILD_INCLUDE) $(EMILIA_WEB_BIN)
 
 # Rules for emilia-web binaries and objects.
 $(BIN_DIR)%: $(OBJ_DIR)$(BIN_NAME)/%.o $(EMILIA_WEB_OBJ)

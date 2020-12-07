@@ -1,2 +1,2 @@
 @ECHO OFF
-cygwin make %*
+wsl make %*

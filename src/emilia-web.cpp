@@ -194,7 +194,5 @@ int main(int argc, const char *argv[]) {
 	while (command != "exit") {
 		std::cin >> command;
 	}
-	server.close();
-	Rain::Networking::Socket::cleanup();
 	return 0;
 }

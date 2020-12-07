@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.0.14
+
+* Update to RAII implementation of `Rain::Socket`.
+* Add additional `make` options and switch to WSL from Cygwin.
+
 ## 7.0.13
 
 * Shorten default timeouts.
