@@ -56,7 +56,7 @@ run: $(VERSION_BUILD_INCLUDE) $(EMILIA_WEB_BIN)
 	./$(EMILIA_WEB_BIN) $(ARGS)
 
 # Compile with incrementing build nor running.
-.PHONY: no-inc
+.PHONY: noinc
 noinc: $(VERSION_BUILD_INCLUDE) $(EMILIA_WEB_BIN)
 
 # Rules for emilia-web binaries and objects.

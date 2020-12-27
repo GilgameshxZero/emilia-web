@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.1
+
+* Update `noinc` make command.
+
 ## 7.1.0
 
 * Fix the RAII `Socket` implementation and update inheritance model to match.
