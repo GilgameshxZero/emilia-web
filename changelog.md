@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.1.0
+
+* Fix the RAII `Socket` implementation and update inheritance model to match.
+* Fix `MacOS` builds.
+
 ## 7.0.14
 
 * Update to RAII implementation of `Rain::Socket`.
