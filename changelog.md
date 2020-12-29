@@ -1,5 +1,11 @@
 # Changelog
 
+## 7.1.2
+
+* Fix `make noinc`.
+* Don't sort `using` in `.clang-format`.
+* Use `rain v6.4.0`.
+
 ## 7.1.1
 
 * Update `noinc` make command.
