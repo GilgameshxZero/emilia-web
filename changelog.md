@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.3
+
+* Fix a bug where 404 `Content-Length` was not being sent correctly.
+
 ## 7.1.2
 
 * Fix `make noinc`.

@@ -48,7 +48,7 @@ bool Server::onRequest(Slave &slave, Request &req) noexcept {
 		Response notFound(404, "Emilia couldn't find your page T_T");
 		notFound.body.appendBytes("I'm sorry, I couldn't find what you wanted T_T");
 		notFound.header["Content-Type"] = "text/html";
-		notFound.header["Content-Length"] = notFound.body.getBytesLength();
+		notFound.header["Content-Length"] = std::to_string(notFound.body.getBytesLength());
 		if (req.method != "GET") {
 			slave.send(notFound);
 			return false;
