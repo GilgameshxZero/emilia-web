@@ -84,7 +84,8 @@
 
 	// Extensions.
 	"C_Cpp.default.includePath": [
-		"../rain/include"
+		"include/",
+		"../rain/include/"
 	],
 
 	"[cpp]": {

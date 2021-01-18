@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.7
+
+* Additional small fixes for include paths and versioning.
+
 ## 7.1.6
 
 * Use `-g` and `-march=native` flags in compilation like in the `rain` project.
