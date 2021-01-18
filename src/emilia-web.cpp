@@ -134,14 +134,14 @@ bool Server::onRequest(Slave &slave, Request &req) noexcept {
 					// If the file is small enough, add it to the cache.
 					auto ret =
 						fileCache.insert_or_assign(reqPath.string(), std::string());
-					ret.first->second->second.resize(size);
+					ret.first->second->second.resize(static_cast<std::size_t>(size));
 					file.read(ret.first->second->second.data(), size);
 					res.body.appendBytes(ret.first->second->second);
 					slave.send(res);
 				} else {
 					// Pipe back into the response via a generator.
 					char buf[BUF_SZ];
-					std::size_t remaining = size;
+					std::size_t remaining = static_cast<std::size_t>(size);
 					const Rain::Networking::Http::Body::Generator generator =
 						[&](char **bytes) {
 							// Are we done?

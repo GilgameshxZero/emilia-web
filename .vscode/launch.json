@@ -1,0 +1,31 @@
+{
+	"version": "0.2.0",
+	"configurations": [{
+			"name": "debug-windows",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}\\bin\\emilia-web.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}\\bin",
+			"externalConsole": false,
+			"preLaunchTask": "build-debug",
+		},
+		{
+			"name": "debug-linux-osx",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/bin/emilia-web",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}/bin",
+			"environment": [],
+			"externalConsole": false,
+			"preLaunchTask": "build-debug",
+
+			"MIMode": "gdb",
+
+			"osx": { "MIMode": "lldb" }
+		}
+	]
+}

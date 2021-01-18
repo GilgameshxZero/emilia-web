@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.1.4
+
+* Revamp `makefile` to pass correct linker and compiler flags.
+* Setup Visual Studio Code debugging workflows.
+
 ## 7.1.3
 
 * Fix a bug where 404 `Content-Length` was not being sent correctly.

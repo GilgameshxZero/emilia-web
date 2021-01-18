@@ -1,0 +1,110 @@
+{
+	"version": "2.0.0",
+	"tasks": [{
+			"type": "shell",
+			"label": "build-debug",
+			"options": { "cwd": "${workspaceFolder}/build" },
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "silent"
+			},
+
+			"command": "make",
+			"args": [
+				"emilia-web"
+			],
+			"problemMatcher": ["$gcc"],
+
+			"windows": {
+				"command": "call",
+				"args": [
+					// Setup command line to use cl.exe.
+					"\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\Tools\\VsDevCmd.bat\"",
+					"&&",
+
+					// Increment build.
+					"increment-build",
+					"&&",
+
+					// Create directories if they don't exist yet.
+					"IF",
+					"NOT",
+					"EXIST",
+					"..\\bin",
+					"(md",
+					"..\\bin)",
+					"ELSE",
+					"(CALL", // No-op.
+					")",
+					"&&",
+					"IF",
+					"NOT",
+					"EXIST",
+					"..\\obj",
+					"(md",
+					"..\\obj)",
+					"ELSE",
+					"(CALL", // No-op.
+					")",
+					"&&",
+
+					// Compile and link.
+					"cl",
+					"/I../../rain/include/", // Rain include files.
+					"/I../include/", // Project include files.
+					"/std:c++17", // Use C++ 17 standard.
+					"/Zi", // Generate debug info as PDB file.
+					"/MTd", // Generate debug exe.
+					"/permissive-", // Strict standards-conforming behavior.
+					"/Fo../obj/", // Object file location.
+					"/Fd../bin/", // Move the PDF file created by /Z*
+
+					"/EHsc", // Enables stack unwinding and that externs never throw exceptions.
+					"/W3", // Display warnings up to level 3. Level 4 warnings disable include file paths that go up the tree.
+					"/FC", // Display full path of source code in diagnostics.
+					"/GS", // Checks buffer security.
+					"/Zf", // Faster PDF generation.
+					"/sdl", // Security warnings.
+					"/MP8", // Up to 8 copies of cl.exe to speed up compilation.
+					"/nologo", // Suppress cl.exe startup banner.
+
+					// Source files.
+					"..\\src\\*",
+
+					// Linker options.
+					"/link", // Options after this are passed to the linker.
+					"/OUT:../bin/emilia-web.exe", // Rename output exe.
+					"/PDB:../bin/emilia-web.pdb", // PDB location.
+					"/NOLOGO"
+				],
+				"problemMatcher": ["$msCompile"]
+			}
+		},
+		{
+			"type": "shell",
+			"label": "clean",
+			"options": { "cwd": "${workspaceFolder}/build" },
+			"presentation": {
+				"reveal": "silent"
+			},
+
+			"command": "make",
+			"args": [
+				"clean"
+			],
+
+			"windows": {
+				"command": "rd",
+				"args": [
+					"/Q",
+					"/S",
+					"..\\bin",
+					"..\\obj",
+				]
+			}
+		}
+	]
+}
