@@ -1,3 +1,3 @@
-# emilia-web - An Amazing Project
+# emilia-web
 
 HTTP server for `emilia`.

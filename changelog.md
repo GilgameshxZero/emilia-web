@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.5
+
+* Remove “An Amazing Project” from readme.
+
 ## 7.1.4
 
 * Revamp `makefile` to pass correct linker and compiler flags.
