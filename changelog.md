@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.6
+
+* Use `-g` and `-march=native` flags in compilation like in the `rain` project.
+
 ## 7.1.5
 
 * Remove “An Amazing Project” from readme.

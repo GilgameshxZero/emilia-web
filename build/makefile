@@ -22,11 +22,11 @@ EMILIA_WEB_OBJS := $(addsuffix .o, \
 	$(addprefix $(OBJ_DIR), $(EMILIA_WEB_NAMES)))
 EMILIA_WEB_BIN := $(BIN_DIR)$(BIN_NAME)
 
-# Flags for build. Release by default.
+# Flags for build. Debug by default.
 CXX := g++
 CXXFLAGS := -I$(INCLUDE_DIR) -I$(RAIN_INCLUDE_DIR) -std=c++17 -pthread -Wall
-CXXFLAGS_DEBUG := -O0
-CXXFLAGS_RELEASE := -O3
+CXXFLAGS_DEBUG := -O0 -g
+CXXFLAGS_RELEASE := -O3 -march=native
 LDLIBS := -lresolv
 
 # OS-specific behavior.
@@ -35,7 +35,7 @@ ifneq ($(UNAME_S), Darwin)
 	LDLIBS := $(LDLIBS) -lstdc++fs
 endif
 
-# Check if DEBUG=1 is set.
+# Check if RELEASE=1 is set.
 ifeq ($(RELEASE), 1)
   CXXFLAGS := $(CXXFLAGS) $(CXXFLAGS_RELEASE)
 else
