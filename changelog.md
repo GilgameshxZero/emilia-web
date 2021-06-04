@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.1.9
+
+* Update to the `getLength` function and `char const**` type for `Generator` in `Rain::Networking` servers.
+* Modify VSCode build tasks to create `bin` and `obj` folders automatically, better.
+
 ## 7.1.8
 
 * Makefile now links libraries after objects as intended.

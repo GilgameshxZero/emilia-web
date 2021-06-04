@@ -8,7 +8,7 @@
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}\\bin",
-			"externalConsole": false,
+			"console":"externalTerminal",
 			"preLaunchTask": "build-debug",
 		},
 		{

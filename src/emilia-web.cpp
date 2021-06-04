@@ -48,7 +48,7 @@ bool Server::onRequest(Slave &slave, Request &req) noexcept {
 		Response notFound(404, "Emilia couldn't find your page T_T");
 		notFound.body.appendBytes("I'm sorry, I couldn't find what you wanted T_T");
 		notFound.header["Content-Type"] = "text/html";
-		notFound.header["Content-Length"] = std::to_string(notFound.body.getBytesLength());
+		notFound.header["Content-Length"] = std::to_string(notFound.body.getLength());
 		if (req.method != "GET") {
 			slave.send(notFound);
 			return false;
@@ -61,7 +61,7 @@ bool Server::onRequest(Slave &slave, Request &req) noexcept {
 		if (req.path == "/version") {
 			res.body.appendBytes(EMILIA_WEB_VERSION_STR);
 			res.header["Content-Type"] = "text/html";
-			res.header["Content-Length"] = std::to_string(res.body.getBytesLength());
+			res.header["Content-Length"] = std::to_string(res.body.getLength());
 			slave.send(res);
 		} else if (req.path.substr(0, 18) == "/newsletter/check/") {
 			{
@@ -71,7 +71,7 @@ bool Server::onRequest(Slave &slave, Request &req) noexcept {
 						: "not subscribed");
 			}
 			res.header["Content-Type"] = "text/html";
-			res.header["Content-Length"] = std::to_string(res.body.getBytesLength());
+			res.header["Content-Length"] = std::to_string(res.body.getLength());
 			slave.send(res);
 		} else if (req.path.substr(0, 19) == "/newsletter/toggle/") {
 			// Sanitize the email of newlines, toggle it, and then flush it to disk.
@@ -121,7 +121,7 @@ bool Server::onRequest(Slave &slave, Request &req) noexcept {
 				// If file is in cache, send that back.
 				res.body.appendBytes(fileCache.at(reqPath.string()));
 				res.header["Content-Length"] =
-					std::to_string(res.body.getBytesLength());
+					std::to_string(res.body.getLength());
 				slave.send(res);
 			} catch (...) {
 				std::ifstream file(reqPath, std::ios::binary | std::ios::ate);
@@ -143,7 +143,7 @@ bool Server::onRequest(Slave &slave, Request &req) noexcept {
 					char buf[BUF_SZ];
 					std::size_t remaining = static_cast<std::size_t>(size);
 					const Rain::Networking::Http::Body::Generator generator =
-						[&](char **bytes) {
+						[&](char const **bytes) {
 							// Are we done?
 							if (remaining == 0) {
 								return static_cast<std::size_t>(0);

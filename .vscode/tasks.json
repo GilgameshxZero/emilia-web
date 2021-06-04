@@ -30,26 +30,16 @@
 					"&&",
 
 					// Create directories if they don't exist yet.
-					"IF",
-					"NOT",
-					"EXIST",
+					"MKDIR",
 					"..\\bin",
-					"(md",
-					"..\\bin)",
-					"ELSE",
-					"(CALL", // No-op.
-					")",
-					"&&",
-					"IF",
-					"NOT",
-					"EXIST",
+					"2>",
+					"NUL",
+					"&",
+					"MKDIR",
 					"..\\obj",
-					"(md",
-					"..\\obj)",
-					"ELSE",
-					"(CALL", // No-op.
-					")",
-					"&&",
+					"2>",
+					"NUL",
+					"&",
 
 					// Compile and link.
 					"cl",
