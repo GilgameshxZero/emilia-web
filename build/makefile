@@ -63,7 +63,7 @@ noinc: $(EMILIA_WEB_BIN)
 # Rules for emilia-web binaries and objects.
 $(BIN_DIR)%: $(OBJ_DIR)%.o $(EMILIA_WEB_OBJS)
 	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $(LDLIBS) $< -o $@
+	$(CXX) $(CXXFLAGS) $< $(LDLIBS) -o $@
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(EMILIA_WEB_INCLUDES) $(RAIN_INCLUDES)
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@

@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.8
+
+* Makefile now links libraries after objects as intended.
+
 ## 7.1.7
 
 * Additional small fixes for include paths and versioning.
