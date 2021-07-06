@@ -190,7 +190,7 @@ int main(int argc, const char *argv[]) {
 	newsSubsIn.close();
 
 	Server server;
-	server.serve(Rain::Networking::Host("localhost", port), false);
+	server.serve(Rain::Networking::Host("", port), false);
 	std::cout << "Serving on port " << server.getService().getCStr() << ".\n";
 	std::string command;
 	while (command != "exit") {

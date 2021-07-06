@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.10
+
+* Update the host node config to match `rain v6.5.4`.
+
 ## 7.1.9
 
 * Update to the `getLength` function and `char const**` type for `Generator` in `Rain::Networking` servers.
